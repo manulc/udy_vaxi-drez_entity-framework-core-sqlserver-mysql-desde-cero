@@ -1,0 +1,33 @@
+Docker:
+
+- Sql Server 2019:
+docker image pull mcr.microsoft.com/mssql/server:2019-latest
+docker container run --name sql-server-2019 -d -p 1433:1433 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=sa@12345" mcr.microsoft.com/mssql/server:2019-latest
+
+- MySQL 8.0:
+docker container run --name mysql-8.0 --detach -p 3306:3306 --env MYSQL_ROOT_PASSWORD=root --env MYSQL_DATBASSE=CursosOnlineDB mysql:8.0.40
+-------------------------
+
+- Crea una solución (Por defecto utiliza el nombre de la carpeta como nombre de la solución).
+dotnet new sln
+
+mkdir LeerData
+cd LeerData
+
+- Crea un proyecto (Sobre el directorio LeerData. Por defecto utiliza el nombre de la carpeta como nombre del proyecto).
+dotnet new console
+
+- Ejecuta el proyecto LeerData (Sobre el directorio de la solución).
+dotnet run --project LeerData
+
+- Instala la herramienta "dotnet-ef" (útil para realizar migraciones a base de datos) de forma global:
+dotnet tool install --global dotnet-ef --version 3.1.2
+
+- Crea los archivos de migración a la base de datos para el proyecto LeerData (Sobre el directorio de la solución).
+dotnet ef migrations add MySQLMigration --project LeerData
+
+- Compila y construye el proyecto (Sobre el directorio del proyecto LeerData).
+dotnet build
+
+- Genera un archivo gitignore para proyectos de este tipo.
+dotnet new gitignore
